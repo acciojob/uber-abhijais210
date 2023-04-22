@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class TripBooking{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int tripBookingId;
     private String fromLocation;
     private String toLocation;
     private int distanceInKm;
@@ -20,12 +20,12 @@ public class TripBooking{
     @JoinColumn
     private Driver driver;
 
-    public int getId() {
-        return id;
+    public int getTripBookingId() {
+        return tripBookingId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTripBookingId(int tripBookingId) {
+        this.tripBookingId = tripBookingId;
     }
 
     public String getFromLocation() {

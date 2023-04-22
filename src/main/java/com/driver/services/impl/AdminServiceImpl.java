@@ -47,13 +47,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteAdmin(int adminId){
 		// Delete admin without using deleteById function
-		Admin admin;
-		try{
-			admin = adminRepository1.findById(adminId).get();
-		}catch (Exception e){
-			throw new RuntimeException();
-		}
-		adminRepository1.deleteByUsername(admin.getUsername());
+//		Admin admin;
+//		try{
+//			admin = adminRepository1.findById(adminId).get();
+//		}catch (Exception e){
+//			throw new RuntimeException();
+//		}
+		adminRepository1.deleteByAdminId(adminId);
 	}
 
 	@Override

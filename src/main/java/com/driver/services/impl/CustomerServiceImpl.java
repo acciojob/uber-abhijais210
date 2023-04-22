@@ -77,14 +77,14 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setDistanceInKm(distanceInKm);
 		tripBooking.setFromLocation(fromLocation);
 		tripBooking.setToLocation(toLocation);
-		tripBooking.setTripStatus(TripStatus.CONFIRMED);
-		tripBooking.setBill(distanceInKm*driver.getCab().getRatePerKm());
+		tripBooking.setStatus(TripStatus.CONFIRMED);
+		tripBooking.setBill(distanceInKm*driver.getCab().getPerKmRate());
 		tripBooking.setDriver(driver);
 		tripBooking.setCustomer(customer);
 
 		//add tripBooking in driver and for customer also
-		customer.getTripBookings().add(tripBooking);
-		driver.getTripBookings().add(tripBooking);
+		customer.getTripBookingList().add(tripBooking);
+		driver.getTripBookingList().add(tripBooking);
 
 		//also update the status for the cab
 		driver.getCab().setAvailable(false);
@@ -103,7 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}catch (Exception e){
 			throw new RuntimeException();
 		}
-		tripBooking.setTripStatus(TripStatus.CANCELED);
+		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBookingRepository2.save(tripBooking);
 	}
@@ -117,7 +117,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}catch (Exception e){
 			throw new RuntimeException();
 		}
-		tripBooking.setTripStatus(TripStatus.COMPLETED);
+		tripBooking.setStatus(TripStatus.COMPLETED);
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBookingRepository2.save(tripBooking);
 	}

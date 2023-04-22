@@ -24,7 +24,8 @@ public class AdminController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Admin> updateAdminPassword(@RequestParam Integer adminId, @RequestParam String password){
-		return new ResponseEntity<>(adminService.updatePassword(adminId,password), HttpStatus.OK);
+		Admin updatedAdmin = adminService.updatePassword(adminId,password);
+		return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete")
@@ -34,6 +35,7 @@ public class AdminController {
 
 	@GetMapping("/listOfCustomers")
 	public List<Customer> listOfCustomers() {
+
 		return adminService.getListOfCustomers();
 	}
 

@@ -9,12 +9,12 @@ public class Driver{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int driverId;
-    private String mobNo;
+    private String mobile;
     private String password;
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Cab cab;
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
-    private List<TripBooking> tripBookings = new ArrayList<>();
+    private List<TripBooking> tripBookingList = new ArrayList<>();
 
     public int getDriverId() {
         return driverId;
@@ -24,12 +24,12 @@ public class Driver{
         this.driverId = driverId;
     }
 
-    public String getMobNo() {
-        return mobNo;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobNo(String mobNo) {
-        this.mobNo = mobNo;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -48,11 +48,11 @@ public class Driver{
         this.cab = cab;
     }
 
-    public List<TripBooking> getTripBookings() {
-        return tripBookings;
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
     }
 
-    public void setTripBookings(List<TripBooking> tripBookings) {
-        this.tripBookings = tripBookings;
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
     }
 }

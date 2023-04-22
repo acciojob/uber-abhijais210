@@ -103,7 +103,11 @@ public class CustomerServiceImpl implements CustomerService {
 		}catch (Exception e){
 			throw new RuntimeException();
 		}
-
+		//if already completed or cancelled
+		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
+				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
+			return;
+		}
 		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBooking.setBill(0);
@@ -118,6 +122,11 @@ public class CustomerServiceImpl implements CustomerService {
 			tripBooking = tripBookingRepository2.findById(tripId).get();
 		}catch (Exception e){
 			throw new RuntimeException();
+		}
+		//if already completed or cancelled
+		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
+				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
+			return;
 		}
 		tripBooking.setStatus(TripStatus.COMPLETED);
 		tripBooking.getDriver().getCab().setAvailable(true);

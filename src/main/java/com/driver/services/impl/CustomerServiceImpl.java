@@ -103,10 +103,11 @@ public class CustomerServiceImpl implements CustomerService {
 		}catch (Exception e){
 			throw new RuntimeException();
 		}
+
 		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBooking.setBill(0);
-		tripBookingRepository2.save(tripBooking);
+		driverRepository2.save(tripBooking.getDriver());
 	}
 
 	@Override
@@ -120,6 +121,6 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		tripBooking.setStatus(TripStatus.COMPLETED);
 		tripBooking.getDriver().getCab().setAvailable(true);
-		tripBookingRepository2.save(tripBooking);
+		driverRepository2.save(tripBooking.getDriver());
 	}
 }

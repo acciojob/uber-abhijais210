@@ -56,5 +56,6 @@ public class DriverServiceImpl implements DriverService {
 			throw new RuntimeException();
 		}
 		driver.getCab().setAvailable(false);
+		driverRepository3.save(driver);
 	}
 }

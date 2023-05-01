@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 		driverRepository2.save(driver);
 		customerRepository2.save(customer);
 
-		return tripBooking;
+		return tripBookingRepository2.save(tripBooking);
 	}
 
 	@Override
@@ -89,15 +89,16 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 
 		//if already completed or cancelled
-		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
-				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
-			return;
-		}
+//		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
+//				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
+//			return;
+//		}
 		Driver driver = tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.setBill(0);
 		driverRepository2.save(driver);
+		tripBookingRepository2.save(tripBooking);
 	}
 
 	@Override
@@ -106,14 +107,15 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 
 		//if already completed or cancelled
-		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
-				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
-			return;
-		}
+//		if((tripBooking.getStatus().compareTo(TripStatus.CANCELED) == 0 )||
+//				(tripBooking.getStatus().compareTo(TripStatus.COMPLETED) == 0)){
+//			return;
+//		}
 		Driver driver = tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		tripBooking.setStatus(TripStatus.COMPLETED);
 		tripBooking.setBill(tripBooking.getDistanceInKm()*10);
 		driverRepository2.save(driver);
+		tripBookingRepository2.save(tripBooking);
 	}
 }

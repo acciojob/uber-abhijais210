@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 		driverRepository2.save(driver);
 		customerRepository2.save(customer);
 
-		return tripBookingRepository2.save(tripBooking);
+		return tripBooking;
 	}
 
 	@Override

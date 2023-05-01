@@ -34,25 +34,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin updatePassword(Integer adminId, String password) {
 		//Update the password of admin with given id
-		Admin admin;
-		try{
-			admin = adminRepository1.findById(adminId).get();
-		}catch (Exception e){
-			throw new RuntimeException();
-		}
+		Admin admin = adminRepository1.findById(adminId).get();
+
 		admin.setPassword(password);
 		return adminRepository1.save(admin);
 	}
 
 	@Override
 	public void deleteAdmin(int adminId){
-		// Delete admin without using deleteById function
-//		Admin admin;
-//		try{
-//			admin = adminRepository1.findById(adminId).get();
-//		}catch (Exception e){
-//			throw new RuntimeException();
-//		}
 		adminRepository1.deleteByAdminId(adminId);
 	}
 

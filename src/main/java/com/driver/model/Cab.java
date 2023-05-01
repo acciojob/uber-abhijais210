@@ -12,7 +12,7 @@ public class Cab{
 
     @OneToOne
     @JoinColumn
-    public Driver driver;
+    private Driver driver;
 
     public int getId() {
         return id;
